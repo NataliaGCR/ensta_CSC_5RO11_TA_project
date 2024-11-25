@@ -112,6 +112,71 @@ Run the following to deactivate the Miniconda environment:
 conda deactivate
 ```
 
+
+### AWS
+
+To download the AWS dependencies required for image recognition, follow the steps suggested in [AWS Tutorial](https://docs.aws.amazon.com/rekognition/latest/dg/getting-started.html).
+
+First, to you use Amazon Rekognition, you must complete the following tasks:
+
+1. Create an AWS account and [sign up](https://signin.aws.amazon.com/signup?request_type=register). 
+2. Create a User with administrative access.
+   a. Enable IAM Identity Center.
+   b. In IAM Identity Center, grant administrative access to a user.
+   c. Sign in as the user with administrative access using the sign-in URL that was sent to your email. 
+3. Download and install the AWS CLI and the [AWS SDKs](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) that you want to use.
+```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+4. Create an access key for the user you created.
+   a. Sign in to the AWS Management Console and open the IAM console.
+   b. Choose Users and the name of the user you created.
+   c. Choose the Security credentials tab and then create access key.
+5. Give the user access to be able to use rekognition
+   a. Go to the Users section and select the name of the user you want to assign permissions to.
+   b. On the Permissions tab, click Add Permissions.
+   c. Select Attach Policies Directly.
+   d. Find and select the **AmazonRekognitionFullAccess** predefined policy. This will give them full access to the Rekognition service.
+   e. Click Review and then Add Permissions.
+ 6. On your computer, navigate to your home directory
+ ```bash
+~/.aws
+touch credentials
+nano credentials
+```
+
+7. Using the credentials created in step 4, change the credentials file settings to as shown below
+
+ ```bash
+[default]
+aws_access_key_id = your_access_key_id
+aws_secret_access_key = your_secret_access_key
+```
+
+8. Create the config file to define the location.
+
+ ```bash
+touch config
+nano config
+```
+
+9. It is recommended to use the Ireland location, since it has the rekognition feature enabled, which Paris does not.
+
+ ```bash
+[default]
+region = your_aws_region
+```
+
+10. Close the terminal
+
+
+# How to use the code
+
+## Pepper API and emotion recognition
+
+
 ## Roadmap
 This project had incremental goals:
 1. k
